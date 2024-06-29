@@ -261,6 +261,21 @@ async def Ouo(bot, cmd: Message):
                         ]
                     )
           x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
+      elif user.status not in (enums.ChatMemberStatus.MEMBER, enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
+          idk = str(usr_cmd)
+          idk = idk.replace("https://ouo.io/", "")
+          idk = idk.replace("http://ouo.io/", "")
+          idk = idk.replace("https://ouo.press/", "")
+          idk = idk.replace("http://ouo.press/", "")
+          dl_markup = InlineKeyboardMarkup(
+              [
+                [
+                  InlineKeyboardButton(text="😼 Channel", url=f"https://t.me/neko_bots"),
+                  InlineKeyboardButton(text="🔄 Retry", url=f"https://t.me/ouo_bypass_robot?start=neko_{idk}")
+                 ]
+              ]
+          )
+          await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
     else:
       pass
 @app.on_message(filters.command('users') & filters.private & filters.user(1443454117))
