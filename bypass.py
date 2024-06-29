@@ -141,7 +141,14 @@ async def start(bot, cmd: Message):
                 bl = b['bypassed_link']
                 asyncio.sleep(3)
                 await x1.delete()
-                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
+                bl_markup = InlineKeyboardMarkup(
+                    [
+                      [
+                        InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
+                      ]
+                    ]
+                )
+                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
             elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
                 url = (usr_cmd).split("_")[-1]
@@ -149,7 +156,14 @@ async def start(bot, cmd: Message):
                 bl = b['bypassed_link']
                 asyncio.sleep(3)
                 await x1.delete()
-                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
+                bl_markup = InlineKeyboardMarkup(
+                    [
+                      [
+                        InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
+                      ]
+                    ]
+                )
+                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
             elif user.status == enums.ChatMemberStatus.OWNER:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
                 url = (usr_cmd).split("_")[-1]
@@ -157,7 +171,14 @@ async def start(bot, cmd: Message):
                 bl = b['bypassed_link']
                 asyncio.sleep(3)
                 await x1.delete()
-                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
+                bl_markup = InlineKeyboardMarkup(
+                    [
+                      [
+                        InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
+                      ]
+                    ]
+                )
+                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
             elif user.status not in (enums.ChatMemberStatus.MEMBER, enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
                 idk = (usr_cmd).split("_")[-1]  
                 idk = idk.replace("https://ouo.io/", "")
@@ -194,31 +215,54 @@ async def start(bot, cmd: Message):
 async def Ouo(bot, cmd: Message):
     user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
     usr_cmd = str(cmd.text)
-    if user.status == enums.ChatMemberStatus.MEMBER:
-        x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
-        url = usr_cmd
-        b = ouo_bypass(url)
-        bl = b['bypassed_link']
-        asyncio.sleep(3)
-        await x1.delete()
-        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
-    elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
-        x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
-        url = usr_cmd
-        b = ouo_bypass(url)
-        bl = b['bypassed_link']
-        asyncio.sleep(3)
-        await x1.delete()
-        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
-    elif user.status == enums.ChatMemberStatus.OWNER:
-        x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
-        url = usr_cmd
-        b = ouo_bypass(url)
-        bl = b['bypassed_link']
-        asyncio.sleep(3)
-        await x1.delete()
-        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
-
+    if usr_cmd.startswith("http"):
+      if user.status == enums.ChatMemberStatus.MEMBER:
+          x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
+          url = usr_cmd
+          b = ouo_bypass(url)
+          bl = b['bypassed_link']
+          asyncio.sleep(3)
+          await x1.delete()
+          bl_markup = InlineKeyboardMarkup(
+                        [
+                          [
+                            InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
+                          ]
+                        ]
+                    )
+          x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
+      elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
+          x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
+          url = usr_cmd
+          b = ouo_bypass(url)
+          bl = b['bypassed_link']
+          asyncio.sleep(3)
+          await x1.delete()
+          bl_markup = InlineKeyboardMarkup(
+                        [
+                          [
+                            InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
+                          ]
+                        ]
+                    )
+          x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
+      elif user.status == enums.ChatMemberStatus.OWNER:
+          x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
+          url = usr_cmd
+          b = ouo_bypass(url)
+          bl = b['bypassed_link']
+          asyncio.sleep(3)
+          await x1.delete()
+          bl_markup = InlineKeyboardMarkup(
+                        [
+                          [
+                            InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
+                          ]
+                        ]
+                    )
+          x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
+    else:
+      pass
 @app.on_message(filters.command('users') & filters.private & filters.user(1443454117))
 async def get_users(bot, message: Message):
     msg = await app.send_message(chat_id=message.chat.id, text="`Fetching`")
