@@ -123,6 +123,7 @@ SAMPLE OUTPUT
 async def start(bot, cmd: Message):
     usr_cmd = cmd.text.split("_", 1)[-1]
     kay_id = -1001642923224
+    id = cmd.from_user.id
     if not await present_user(id):
         try:
             await add_user(id)
