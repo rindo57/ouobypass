@@ -130,31 +130,34 @@ async def start(bot, cmd: Message):
         except:
             pass
     if usr_cmd == "/start":
-        await cmd.reply_text("""**Meow! Send me "ouo.io" or "ouo.press" & I'll bypass & send you the destination link. 😺**""")
+        await cmd.reply_text("""**Meow! Send me "ouo.io" or "ouo.press" link & I'll bypass & send you the destination link. 😺**""")
     else:
         try:
             user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
             if user.status == enums.ChatMemberStatus.MEMBER:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺\n\n")
                 url = (usr_cmd).split("_")[-1]
-                bl = ouo_bypass(url)
+                b = ouo_bypass(url)
+                bl = b['bypassed_link']
                 asyncio.sleep(3)
                 await x1.delete()
-                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
+                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
             elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
                 url = (usr_cmd).split("_")[-1]
-                bl = ouo_bypass(url)
+                b = ouo_bypass(url)
+                bl = b['bypassed_link']
                 asyncio.sleep(3)
                 await x1.delete()
                 x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
             elif user.status == enums.ChatMemberStatus.OWNER:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
                 url = (usr_cmd).split("_")[-1]
-                bl = ouo_bypass(url)
+                b = ouo_bypass(url)
+                bl = b['bypassed_link']
                 asyncio.sleep(3)
                 await x1.delete()
-                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`")
+                x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
             elif user.status not in (enums.ChatMemberStatus.MEMBER, enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
                 idk = (usr_cmd).split("_")[-1]  
                 idk = idk.replace("https://ouo.io/", "")
@@ -194,24 +197,27 @@ async def Ouo(bot, cmd: Message):
     if user.status == enums.ChatMemberStatus.MEMBER:
         x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
         url = usr_cmd
-        bl = ouo_bypass(url)
+        b = ouo_bypass(url)
+        bl = b['bypassed_link']
         asyncio.sleep(3)
         await x1.delete()
-        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
+        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
     elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
         x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
         url = usr_cmd
-        bl = ouo_bypass(url)
+        b = ouo_bypass(url)
+        bl = b['bypassed_link']
         asyncio.sleep(3)
         await x1.delete()
-        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
+        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
     elif user.status == enums.ChatMemberStatus.OWNER:
         x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
         url = usr_cmd
-        bl = ouo_bypass(url)
+        b = ouo_bypass(url)
+        bl = b['bypassed_link']
         asyncio.sleep(3)
         await x1.delete()
-        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
+        x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot. /ᐠ. ｡.ᐟ\ᵐᵉᵒʷˎˊ˗")
 
 @app.on_message(filters.command('users') & filters.private & filters.user(1443454117))
 async def get_users(bot, message: Message):
