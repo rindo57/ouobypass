@@ -1,14 +1,15 @@
 import asyncio
 import os
 import re
+from curl_cffi import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 import time
-import aiohttp
-import requests
-import aiofiles
 from base64 import standard_b64encode, standard_b64decode
 from pyrogram import Client, filters, idle, enums 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import logging
+from db import add_user, full_userbase, present_user, del_user
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
 
@@ -22,10 +23,6 @@ app = Client(
             api_id = Config.API_ID,
             api_hash = Config.API_HASH)
 
-import re
-from curl_cffi import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse
 
 # ouo url
 # Examples:
@@ -33,7 +30,6 @@ from urllib.parse import urlparse
 # https://ouo.press/Zu7Vs5 - ouo.io links (with account -> two steps)
 # Can exchange between ouo.press and ouo.io
 
-url = "https://ouo.press/Zu7Vs5"
 
 # -------------------------------------------
 
@@ -61,7 +57,7 @@ def RecaptchaV3():
 
 client = requests.Session()
 client.headers.update({
-    'authority': 'ouo.io',
+    'authority': 'ouo.press',
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
     'cache-control': 'max-age=0',
@@ -74,7 +70,7 @@ client.headers.update({
 
 
 def ouo_bypass(url):
-    tempurl = url.replace("ouo.press", "ouo.io")
+    tempurl = url.replace("ouo.io", "ouo.press")
     p = urlparse(tempurl)
     id = tempurl.split('/')[-1]
     res = client.get(tempurl, impersonate="chrome110")
@@ -123,20 +119,6 @@ SAMPLE OUTPUT
     `-.-' \ )-`( , o o)
           `-    \`_`"'-
 '''
-def b64_to_str(b64: str) -> str:
-    bytes_b64 = b64.encode('ascii')
-    bytes_str = standard_b64decode(bytes_b64)
-    __str = bytes_str.decode('ascii')
-    return __str
-def str_to_b64(__str: str) -> str:
-
-    str_bytes = __str.encode('ascii')
-
-    bytes_b64 = standard_b64encode(str_bytes)
-
-    b64 = bytes_b64.decode('ascii')
-
-    return b64
 
 @app.on_message(filters.command("start") & filters.private)
 async def start(bot, cmd: Message):
@@ -214,6 +196,10 @@ async def start(bot, cmd: Message):
                 await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.\n\n{meow}", reply_markup=dl_markup)
         except Exception as err:
             idk = (usr_cmd).split("_")[-1]  
+            idk = idk.replace("https://ouo.io/", "")
+            idk = idk.replace("http://ouo.io/", "")
+            idk = idk.replace("https://ouo.press/", "")
+            idk = idk.replace("http://ouo.press/", "")
             dl_markup = InlineKeyboardMarkup(
                 [
                   [
@@ -253,62 +239,77 @@ async def Ouo(bot, cmd: Message):
     usr_cmd = str(cmd.text)
     if user.status == enums.ChatMemberStatus.MEMBER:
         x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
-        url = (usr_cmd).split("_")[-1]
+        url = usr_cmd
         bl = ouo_bypass(url)
         asyncio.sleep(3)
         await x1.delete()
         x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
     elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
         x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
-        url = (usr_cmd).split("_")[-1]
+        url = usr_cmd
         bl = ouo_bypass(url)
         asyncio.sleep(3)
         await x1.delete()
         x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
     elif user.status == enums.ChatMemberStatus.OWNER:
         x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
-        url = (usr_cmd).split("_")[-1]
+        url = usr_cmd
         bl = ouo_bypass(url)
         asyncio.sleep(3)
         await x1.delete()
         x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
 
-repl_markup=InlineKeyboardMarkup(
+@app.on_message(filters.command('users') & filters.private & filters.user(1443454117))
+async def get_users(bot, message: Message):
+    msg = await app.send_message(chat_id=message.chat.id, text="`Fetching`")
+    users = await full_userbase()
+    await msg.edit(f"{len(users)} users are using this bot")
 
-            [
+@app.on_message(filters.private & filters.command('broadcast') & filters.user(1443454117))
+async def send_text(bot, message: Message):
+    if message.reply_to_message:
+        query = await full_userbase()
+        broadcast_msg = message.reply_to_message
+        total = 0
+        successful = 0
+        blocked = 0
+        deleted = 0
+        unsuccessful = 0
+        
+        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
+        for chat_id in query:
+            try:
+                await broadcast_msg.copy(chat_id)
+                successful += 1
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+                await broadcast_msg.copy(chat_id)
+                successful += 1
+            except UserIsBlocked:
+                await del_user(chat_id)
+                blocked += 1
+            except InputUserDeactivated:
+                await del_user(chat_id)
+                deleted += 1
+            except:
+                unsuccessful += 1
+                pass
+            total += 1
+        
+        status = f"""<b><u>Broadcast Completed</u>
 
-                [
+Total Users: <code>{total}</code>
+Successful: <code>{successful}</code>
+Blocked Users: <code>{blocked}</code>
+Deleted Accounts: <code>{deleted}</code>
+Unsuccessful: <code>{unsuccessful}</code></b>"""
+        
+        return await pls_wait.edit(status)
 
-                    InlineKeyboardButton(
-
-                        text="🐌TG FILE",
-
-                        url="https://telegram.me/somayukibot?start=animxt_MjQ1Nw==",
-
-                    ),
-
-                    InlineKeyboardButton(
-
-                        text="🚀BETA DL",
-
-                        url="https://da.gd/ll0oCI",
-
-                    ),
-  
-                ],
-                    
-            ],
-        )
-@app.on_message(filters.command("send"))
-async def stdart(bot, message: Message):
-  sourcetext =  f"**#Encoded_File**" + "\n" + f"**‣ File Name**: `Ikenaikyo - 01 [720p x265] @animxt.mkv`" + "\n" + f"**‣ Video**: `720p HEVC x265 10Bit`" + "\n" + f"**‣ Audio**: `Japanese`" + "\n" + f"**‣ Subtitle**: `English, Portuguese (Brazil), Spanish (Latin America), Spanish, French, German, Italian, Russian`" + "\n" + f"**‣ File Size**: `92 MBs`" + "\n" + f"**‣ Duration:** `24 minutes 42 seconds`" + "\n" + f"**‣ Downloads:** [🔗Telegram File](https://telegram.me/somayukibot?start=animxt_MjQ1Nw==) 🔗[BETA DL](https://da.gd/ll0oCI)"       
-  untextx = await app.send_message(
-                      chat_id=-1001159872623,
-                      text=sourcetext,
-                      reply_to_message_id=35196,
-                      reply_markup=repl_markup
-)            
-            
+    else:
+        msg = await message.reply(REPLY_ERROR)
+        await asyncio.sleep(8)
+        await msg.delete()
 @app.on_message(filters.command("link") & filters.private)
 
 async def link(bot, cmd: Message):
