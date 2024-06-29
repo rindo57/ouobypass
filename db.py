@@ -1,5 +1,4 @@
 import pymongo, os
-from config import DB_URI, DB_NAME
 
 
 dbclient = pymongo.MongoClient("mongodb+srv://anidl:encodes@cluster0.oobfx33.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
