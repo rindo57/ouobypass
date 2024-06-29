@@ -14,14 +14,14 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
                     level=logging.WARNING)
 
 
-from config import Config
+
 
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 app = Client(
             "Bot",
-            bot_token = Config.BOT_TOKEN,
-            api_id = Config.API_ID,
-            api_hash = Config.API_HASH)
+            bot_token = "7459878689:AAGA92Ifi5gilBaNOGtfiacv3ZirFnpnI3M",
+            api_id = 10247139,
+            api_hash = "96b46175824223a33737657ab943fd6a")
 
 
 # ouo url
