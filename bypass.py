@@ -219,7 +219,8 @@ async def Ouo(bot, cmd: Message):
     
     usr_cm = str(cmd.text)
     usr_cmd = usr_cm.lower()
-    if usr_cmd.startswith(("http://ouo.io/", "http://www.ouo.io/", "https://ouo.io/", "https://www.ouo.io/", "http://ouo.press", "http://www.ouo.press", "https://ouo.press", "https://www.ouo.press")):
+    usr_cmd = usr_cmd.replace("www.", "")
+    if usr_cmd.startswith(("http://ouo.io/", "https://ouo.io/", "http://ouo.press", "https://ouo.press")):
       try:
           user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
           if user.status == enums.ChatMemberStatus.MEMBER:
@@ -301,13 +302,13 @@ async def Ouo(bot, cmd: Message):
 
     else:
       pass
-@app.on_message(filters.command('users') & filters.private & filters.user(1443454117))
+@app.on_message(filters.command('users') & filters.private & filters.user(int(1443454117)))
 async def get_users(bot, message: Message):
     msg = await app.send_message(chat_id=message.chat.id, text="`Fetching`")
     users = await full_userbase()
     await msg.edit(f"{len(users)} users are using this bot")
 
-@app.on_message(filters.private & filters.command('broadcast') & filters.user(1443454117))
+@app.on_message(filters.private & filters.command('broadcast') & filters.user(int(1443454117)))
 async def send_text(bot, message: Message):
     if message.reply_to_message:
         query = await full_userbase()
