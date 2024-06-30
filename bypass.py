@@ -211,7 +211,7 @@ async def start(bot, cmd: Message):
             await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
 
 
-@app.on_message(filters.private & filters.regex("http|https"))
+@app.on_message(filters.private)
 async def Ouo(bot, cmd: Message):
     user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
     usr_cmd = str(cmd.text)
