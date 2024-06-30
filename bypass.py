@@ -153,7 +153,7 @@ async def start(bot, cmd: Message):
             elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
                 url = (usr_cmd).split("_")[-1]
-                xurl = "https://ouo.press/"+url
+                xurl = "https://ouo.io/"+url
                 b = ouo_bypass(xurl)
                 bl = b['bypassed_link']
                 asyncio.sleep(3)
@@ -169,7 +169,7 @@ async def start(bot, cmd: Message):
             elif user.status == enums.ChatMemberStatus.OWNER:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
                 url = (usr_cmd).split("_")[-1]
-                xurl = "https://ouo.press/"+url
+                xurl = "https://ouo.io/"+url
                 b = ouo_bypass(xurl)
                 bl = b['bypassed_link']
                 asyncio.sleep(3)
