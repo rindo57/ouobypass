@@ -225,6 +225,7 @@ async def Ouo(bot, cmd: Message):
             x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
             url = usr_cmd
             b = ouo_bypass(url)
+            print(b)
             bl = b['bypassed_link']
             await asyncio.sleep(3)
             await x1.delete()
