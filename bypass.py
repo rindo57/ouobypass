@@ -218,7 +218,7 @@ async def start(bot, cmd: Message):
 async def Ouo(bot, cmd: Message):
     
     usr_cmd = str(cmd.text)
-    if usr_cmd.startswith("http"):
+    if usr_cmd.startswith("http://ouo" || "https://ouo"):
       try:
           user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
           if user.status == enums.ChatMemberStatus.MEMBER:
