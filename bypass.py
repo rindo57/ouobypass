@@ -140,7 +140,7 @@ async def start(bot, cmd: Message):
                 xurl = "https://ouo.press/"+url
                 b = ouo_bypass(xurl)
                 bl = b['bypassed_link']
-                asyncio.sleep(3)
+                await asyncio.sleep(3)
                 await x1.delete()
                 bl_markup = InlineKeyboardMarkup(
                     [
@@ -156,7 +156,7 @@ async def start(bot, cmd: Message):
                 xurl = "https://ouo.press/"+url
                 b = ouo_bypass(xurl)
                 bl = b['bypassed_link']
-                asyncio.sleep(3)
+                await asyncio.sleep(3)
                 await x1.delete()
                 bl_markup = InlineKeyboardMarkup(
                     [
@@ -172,7 +172,7 @@ async def start(bot, cmd: Message):
                 xurl = "https://ouo.press/"+url
                 b = ouo_bypass(xurl)
                 bl = b['bypassed_link']
-                asyncio.sleep(3)
+                await asyncio.sleep(3)
                 await x1.delete()
                 bl_markup = InlineKeyboardMarkup(
                     [
@@ -226,7 +226,7 @@ async def Ouo(bot, cmd: Message):
             url = usr_cmd
             b = ouo_bypass(url)
             bl = b['bypassed_link']
-            asyncio.sleep(3)
+            await asyncio.sleep(3)
             await x1.delete()
             bl_markup = InlineKeyboardMarkup(
                           [
@@ -241,7 +241,7 @@ async def Ouo(bot, cmd: Message):
             url = usr_cmd
             b = ouo_bypass(url)
             bl = b['bypassed_link']
-            asyncio.sleep(3)
+            await asyncio.sleep(3)
             await x1.delete()
             bl_markup = InlineKeyboardMarkup(
                           [
@@ -256,7 +256,7 @@ async def Ouo(bot, cmd: Message):
             url = usr_cmd
             b = ouo_bypass(url)
             bl = b['bypassed_link']
-            asyncio.sleep(3)
+            await asyncio.sleep(3)
             await x1.delete()
             bl_markup = InlineKeyboardMarkup(
                           [
