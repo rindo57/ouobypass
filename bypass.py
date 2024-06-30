@@ -213,10 +213,11 @@ async def start(bot, cmd: Message):
 
 @app.on_message(filters.private)
 async def Ouo(bot, cmd: Message):
-    user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
+    
     usr_cmd = str(cmd.text)
     if usr_cmd.startswith("http"):
       try:
+          user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
           if user.status == enums.ChatMemberStatus.MEMBER:
             x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
             url = usr_cmd
