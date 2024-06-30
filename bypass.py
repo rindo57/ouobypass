@@ -137,7 +137,8 @@ async def start(bot, cmd: Message):
             if user.status == enums.ChatMemberStatus.MEMBER:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺\n\n")
                 url = (usr_cmd).split("_")[-1]
-                b = ouo_bypass(url)
+                xurl = "https://ouo.press/"+url
+                b = ouo_bypass(xurl)
                 bl = b['bypassed_link']
                 asyncio.sleep(3)
                 await x1.delete()
