@@ -217,8 +217,9 @@ async def start(bot, cmd: Message):
 @app.on_message(filters.private)
 async def Ouo(bot, cmd: Message):
     
-    usr_cmd = str(cmd.text)
-    if usr_cmd.startswith("http://ouo" || "https://ouo"):
+    usr_cm = str(cmd.text)
+    usr_cmd = usr_cm.lower()
+    if usr_cmd.startswith(("http://ouo.io/", "http://www.ouo.io/", "https://ouo.io/", "https://www.ouo.io/", "http://ouo.press", "http://www.ouo.press", "https://ouo.press", "https://www.ouo.press")):
       try:
           user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
           if user.status == enums.ChatMemberStatus.MEMBER:
