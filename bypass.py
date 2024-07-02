@@ -371,7 +371,6 @@ async def link(bot, cmd: Message):
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `XXXXXXX`")
 
-    
+print("Powered by @animxt")    
 app.start()
-print("Powered by @animxt")
 idle()
