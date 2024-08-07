@@ -142,13 +142,13 @@ async def start(bot, cmd: Message):
                 bl = b['bypassed_link']
                 await asyncio.sleep(3)
                 await x1.delete()
-                bl_markup = InlineKeyboardMarkup(
+              """  bl_markup = InlineKeyboardMarkup(
                     [
                       [
                         InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
                       ]
                     ]
-                )
+                )"""
                 x2 = await cmd.reply_text(f"**Original Link:** `{xurl}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
             elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
