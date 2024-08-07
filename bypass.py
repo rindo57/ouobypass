@@ -220,7 +220,7 @@ async def Ouo(bot, cmd: Message):
     usr_cm = str(cmd.text)
     usr_cmd = usr_cm.lower()
     usr_cmd = usr_cmd.replace("www.", "")
-    #usr_cmd = usr_cmd.replace("http://", "https://")
+    usr_cmd = usr_cmd.replace("http://", "https://")
     if usr_cmd.startswith(("http://ouo.io/", "https://ouo.io/", "http://ouo.press", "https://ouo.press")):
       try:
           user = await app.get_chat_member(-1001315223923, cmd.from_user.id)
