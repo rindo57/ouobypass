@@ -232,13 +232,13 @@ async def Ouo(bot, cmd: Message):
             bl = b['bypassed_link']
             await asyncio.sleep(1)
             await x1.delete()
-            bl_markup = InlineKeyboardMarkup(
+          '''  bl_markup = InlineKeyboardMarkup(
                           [
                             [
                               InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
                             ]
                           ]
-                      )
+                      )'''
             x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
           elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
             x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
@@ -299,7 +299,7 @@ async def Ouo(bot, cmd: Message):
                 ]
               ]
           )
-          await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
+          await cmd.reply_text(f"Something went wrong.", reply_markup=dl_markup)
 
     else:
       pass
