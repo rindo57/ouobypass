@@ -149,7 +149,7 @@ async def start(bot, cmd: Message):
                       ]
                     ]
                 )
-                x2 = await cmd.reply_text(f"**Original Link:** `{xurl}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
+                x2 = await cmd.reply_text(f"**Original Link:** `{xurl}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.")
             elif user.status == enums.ChatMemberStatus.ADMINISTRATOR:
                 x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
                 url = (usr_cmd).split("_")[-1]
