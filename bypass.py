@@ -299,7 +299,7 @@ async def Ouo(bot, cmd: Message):
                 ]
               ]
           )
-          await cmd.reply_text(f"Something went wrong.", reply_markup=dl_markup)
+          await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
 
     else:
       pass
