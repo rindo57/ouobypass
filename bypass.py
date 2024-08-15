@@ -182,7 +182,7 @@ async def start(bot, cmd: Message):
                     ]
                 )
                 x2 = await cmd.reply_text(f"**Original Link:** `{xurl}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
-            elif user.status not in (enums.ChatMemberStatus.MEMBER, enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
+            else:
                 idk = (usr_cmd).split("_")[-1]  
                 idk = idk.replace("https://ouo.io/", "")
                 idk = idk.replace("http://ouo.io/", "")
