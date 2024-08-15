@@ -211,7 +211,7 @@ async def start(bot, cmd: Message):
                   ]
                 ]
             )
-            await cmd.reply_text(f"Somthing went wrong.")
+            await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
 
 
 @app.on_message(filters.private  & filters.regex("http|https"))
