@@ -125,10 +125,10 @@ async def start(bot, cmd: Message):
     kay_id = -1001642923224
     id = cmd.from_user.id
     if not await present_user(id):
-        try:
-            await add_user(id)
-        except:
-            pass
+      try:
+          await add_user(id)
+      except:
+          pass
     if usr_cmd == "/start":
         await cmd.reply_text("""**Meow! Send me "ouo.io" or "ouo.press" link & I'll bypass & send you the destination link. 😺**""")
     else:
