@@ -287,21 +287,21 @@ async def Ouo(bot, cmd: Message):
             )
             await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
       except Exception as err:
-          idk = usr_cmd
-          idk = idk.replace("https://ouo.io/", "")
-          idk = idk.replace("http://ouo.io/", "")
-          idk = idk.replace("https://ouo.press/", "")
-          idk = idk.replace("http://ouo.press/", "")
-          dl_markup = InlineKeyboardMarkup(
-              [
-                [
-                  InlineKeyboardButton(text="😼 Channel", url=f"https://t.me/neko_bots"),
-                  InlineKeyboardButton(text="🔄 Retry", url=f"https://t.me/ouo_bypass_robot?start=neko_{idk}")
-                ]
-              ]
-          )
-          await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
-
+          x1 = await cmd.reply_text("`Meow! Bypassing...` 😺")
+          url = usr_cmd
+          b = ouo_bypass(url)
+          bl = b['bypassed_link']
+          await asyncio.sleep(1)
+          await x1.delete()
+          bl_markup = InlineKeyboardMarkup(
+                        [
+                           [
+                             InlineKeyboardButton(text="🔗 DESTINATION LINK", url=bl)
+                          ]
+                        ]
+                    )
+          x2 = await cmd.reply_text(f"**Original Link:** `{url}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
+          
     else:
       pass
 @app.on_message(filters.command('users') & filters.private & filters.user(int(1443454117)))
