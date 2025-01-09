@@ -198,23 +198,7 @@ async def start(bot, cmd: Message):
                   )
                   x2 = await cmd.reply_text(f"**Original Link:** `{xurl}`\n\n**Destination Link:** `{bl}`\n\nThank you! for using @ouo_bypass_robot.", reply_markup=bl_markup)
                   
-        """      
-       else:
-                idk = (usr_cmd).split("_")[-1]  
-                idk = idk.replace("https://ouo.io/", "")
-                idk = idk.replace("http://ouo.io/", "")
-                idk = idk.replace("https://ouo.press/", "")
-                idk = idk.replace("http://ouo.press/", "")
-                dl_markup = InlineKeyboardMarkup(
-                    [
-                      [
-                        InlineKeyboardButton(text="😼 Channel", url=f"https://t.me/neko_bots"),
-                        InlineKeyboardButton(text="🔄 Retry", url=f"https://t.me/ouo_bypass_robot?start=neko_{idk}")
-                      ]
-                    ]
-                )
-                await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
-        """
+
         except Exception as err:
             idk = (usr_cmd).split("_")[-1]  
             idk = idk.replace("https://ouo.io/", "")
