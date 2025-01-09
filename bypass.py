@@ -213,7 +213,7 @@ async def start(bot, cmd: Message):
                       ]
                     ]
                 )
-                await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)"""
+                await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
         except Exception as err:
             idk = (usr_cmd).split("_")[-1]  
             idk = idk.replace("https://ouo.io/", "")
@@ -229,7 +229,7 @@ async def start(bot, cmd: Message):
                 ]
             )
             await cmd.reply_text(f"Join [Neko Bots 😼](https://t.me/neko_bots) to access me.", reply_markup=dl_markup)
-
+"""
 
 @app.on_message(filters.private  & filters.regex("http|https"))
 async def Ouo(bot, cmd: Message):
