@@ -19,7 +19,7 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 app = Client(
             "Bot",
-            bot_token = "7459878689:AAGA92Ifi5gilBaNOGtfiacv3ZirFnpnI3M",
+            bot_token = "5991767808:AAHKoINN5FcCzmfDsLGp7CKzrl6M5n_FDB4",
             api_id = 10247139,
             api_hash = "96b46175824223a33737657ab943fd6a")
 
